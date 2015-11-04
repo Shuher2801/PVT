@@ -7,10 +7,10 @@ package by.pvt.electricdevice;
  * @author Ilya
  *
  */
-public abstract class Equipment implements ElectricDevices, Comparable<Object> {
+public abstract class Equipment implements ElectricDevices, Comparable<Object>,Serializable {
 
-	private String name = null;
-	private int power = 0;
+	 String name = null;
+	 int power = 0;
 
 	public Equipment(String name, int power) {
 		setName(name);

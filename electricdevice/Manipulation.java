@@ -1,13 +1,19 @@
 package by.pvt.electricdevice;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import electricdevice.Equipment;
 import by.pvt.electricdevice.house.equipment.Cleaning;
 import by.pvt.electricdevice.house.equipment.ForEntertainment;
 import by.pvt.electricdevice.house.equipment.OtherHouseEquipment;
@@ -89,7 +95,51 @@ public class Manipulation {
 		Collections.sort(array);
 		return array;
 	}
+	/**
+	 * writes List<Equipment> array in file
+	 * 
+	 * @param List
+	 *            <Equipment> array - list of all the equipment in the house
+	 * @param String
+	 *            fileName
+	 */
+	public void writeAr(List<Equipment> array, String fileName) {
 
+		File dirFile = new File("D:/java_3");
+		dirFile.mkdirs();
+		File file = new File(dirFile.getAbsolutePath() + "/" + fileName);
+
+		try (FileOutputStream fos = new FileOutputStream(file);
+				ObjectOutputStream oos = new ObjectOutputStream(fos);) {
+			oos.writeObject(array);
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * reads file and displays it
+	 * 
+	 * @param String
+	 *            fileName
+	 * @return
+	 */
+	public List<Equipment> openAr(String fileName) {
+		List<Equipment> array1 = null;
+		try (FileInputStream fis = new FileInputStream(fileName);
+				ObjectInputStream ois = new ObjectInputStream(fis);) {
+			array1 = (List<Equipment>) ois.readObject();
+
+		} catch (IOException | ClassNotFoundException e) {
+
+			e.printStackTrace();
+		}
+
+		return array1;
+	}
 	/**
 	 * this method displays a list of all the equipment in the house
 	 * 
