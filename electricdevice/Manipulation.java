@@ -35,47 +35,48 @@ public class Manipulation {
 	 * 
 	 * @return array
 	 */
+	String fileName = "D:/java_3/core";
 
 	public List<Equipment> builder() {
 
-		List<OtherKitchenEquipment> arrayOtherKitchenEquipment = new ArrayList<OtherKitchenEquipment>();
+		List<OtherKitchenEquipment> arrayOtherKitchenEquipment = new ArrayList();
 
 		arrayOtherKitchenEquipment.add(new OtherKitchenEquipment(
 				"refrigerator", 150, "silver", "not build-in"));
 		arrayOtherKitchenEquipment.add(new OtherKitchenEquipment("dishwasher",
 				900, "silver", "build-in"));
 
-		List<ForCooking> arrayForCooking = new ArrayList<ForCooking>();
+		List<ForCooking> arrayForCooking = new ArrayList();
 
 		arrayForCooking.add(new ForCooking("microwave", 1700, "white", 250));
 		arrayForCooking.add(new ForCooking("double boiler", 400, "black", 180));
-		arrayForCooking
-				.add(new ForCooking("electric kettle", 1200, "silver", 100));
+		arrayForCooking.add(new ForCooking("electric kettle", 1200, "silver",
+				100));
 		arrayForCooking.add(new ForCooking("toaster", 800, "silver", 120));
 
-		List<ForProcessing> arrayForProcessing = new ArrayList<ForProcessing>();
+		List<ForProcessing> arrayForProcessing = new ArrayList();
 
 		arrayForProcessing.add(new ForProcessing("mixer", 350, "white", 2));
 		arrayForProcessing.add(new ForProcessing("food processor", 1200,
 				"silver", 3));
 
-		List<Cleaning> arrayCleaning = new ArrayList<Cleaning>();
+		List<Cleaning> arrayCleaning = new ArrayList();
 
 		arrayCleaning.add(new Cleaning("vacuum cleaner", 1200, "Samsung",
 				"dry cleaning"));
 		arrayCleaning.add(new Cleaning("washer", 1000, "Samsung", "washing"));
 		arrayCleaning.add(new Cleaning("iron", 250, "Tefal", "with steam"));
 
-		List<ForEntertainment> arrayForEntertainment = new ArrayList<ForEntertainment>();
+		List<ForEntertainment> arrayForEntertainment = new ArrayList();
 
-		arrayForEntertainment
-				.add(new ForEntertainment("TV", 150, "Panasonic", 12));
+		arrayForEntertainment.add(new ForEntertainment("TV", 150, "Panasonic",
+				12));
 		arrayForEntertainment.add(new ForEntertainment("laptop", 80, "Apple",
 				10));
 		arrayForEntertainment.add(new ForEntertainment("recorder ", 50,
 				"Panasonic", 18));
 
-		List<OtherHouseEquipment> arrayOtherHouseEquipment = new ArrayList<OtherHouseEquipment>();
+		List<OtherHouseEquipment> arrayOtherHouseEquipment = new ArrayList();
 
 		arrayOtherHouseEquipment.add(new OtherHouseEquipment("heater", 2000,
 				"Scarlett"));
@@ -84,7 +85,7 @@ public class Manipulation {
 		arrayOtherHouseEquipment.add(new OtherHouseEquipment("hairdtyer", 1000,
 				"Scarlett"));
 
-		List<Equipment> array = new ArrayList<Equipment>();
+		List<Equipment> array = new ArrayList();
 		array.addAll(arrayForProcessing);
 		array.addAll(arrayForCooking);
 		array.addAll(arrayOtherKitchenEquipment);
@@ -95,6 +96,7 @@ public class Manipulation {
 		Collections.sort(array);
 		return array;
 	}
+
 	/**
 	 * writes List<Equipment> array in file
 	 * 
@@ -107,8 +109,7 @@ public class Manipulation {
 
 		File dirFile = new File("D:/java_3");
 		dirFile.mkdirs();
-		File file = new File(dirFile.getAbsolutePath() + "/" + fileName);
-
+		File file = new File(fileName);
 		try (FileOutputStream fos = new FileOutputStream(file);
 				ObjectOutputStream oos = new ObjectOutputStream(fos);) {
 			oos.writeObject(array);
@@ -140,39 +141,43 @@ public class Manipulation {
 
 		return array1;
 	}
+
 	/**
 	 * this method displays a list of all the equipment in the house
 	 * 
 	 * @param array
 	 */
 	public void showAll(List<Equipment> array) {
-
-		Iterator<Equipment> iterator = array.iterator();
-		while (iterator.hasNext()) {
-			iterator.next().show();
+		for (int i = 0; i < array.size(); i++) {
+			System.out.printf("%-18s", array.get(i).getName());
+			System.out.printf("%15s%n", array.get(i).getPower());
 		}
 	}
-	public void title(){
+
+	public void title() {
 		System.out.printf("%-18s", "Name");
 		System.out.printf("%15s%n%n", "Power");
 	}
 
 	/**
-	 * this method displays a list of equipment whose power is more than 150
+	 * Displays a list of equipment whose power is more than 1200
 	 * 
 	 * @param array
 	 */
 	public void sortPower(List<Equipment> array) {
+		int kB = 1200;
 		Iterator<Equipment> iterator = array.iterator();
 		while (iterator.hasNext()) {
 			Equipment srt = iterator.next();
-			if (srt.getPower() > 1200 )
-				srt.show();
+			if (srt.getPower() > kB) {
+				System.out.printf("%-18s", srt.getName());
+				System.out.printf("%15s%n", srt.getPower());
+			}
 		}
 	}
 
 	/**
-	 * This method suggests to choose what equipment to plug in and outputs
+	 * Suggests to choose what equipment to plug in and outputs
 	 * their list. Serially elements of the ArrayList are brought to the console
 	 * and the user is offered to choose to plug in the equipment or not.To plug
 	 * in it is necessary to press a letter "y", to pass a key Enter.
@@ -191,11 +196,13 @@ public class Manipulation {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(
 				System.in));
 
-		List<Equipment> chooseArray = new ArrayList<Equipment>();
+		List<Equipment> chooseArray = new ArrayList();
 
 		for (int i = 0; i < array.size(); i++) {
 			Equipment srt = array.get(i);
-			srt.show();
+			// srt.show();
+			System.out.printf("%-18s", array.get(i).getName());
+			System.out.printf("%15s%n", array.get(i).getPower());
 			String s = reader.readLine();
 			if (s.equals("y")) {
 				chooseArray.add(srt);
@@ -203,13 +210,15 @@ public class Manipulation {
 		}
 		System.out.println("plugged in equipment");
 		for (int i = 0; i < chooseArray.size(); i++) {
-			chooseArray.get(i).show();
+			System.out.printf("%-18s", chooseArray.get(i).getName());
+			System.out.printf("%15s%n", chooseArray.get(i).getPower());
+			// chooseArray.get(i).show();
 		}
 		return chooseArray;
 	}
 
 	/**
-	 * this method calculates the power consumption of the powered equipment for
+	 * calculates the power consumption of the powered equipment for
 	 * a selected period of time
 	 * 
 	 * @param chooseArray
@@ -217,20 +226,30 @@ public class Manipulation {
 	 * @throws IOException
 	 */
 	public void calculatesPower(List<Equipment> chooseArray) {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(
-				System.in));
+
 		System.out.println();
 		System.out.println("Enter time of working");
 		try {
-			int time = Integer.parseInt(reader.readLine());
+			while (true) {
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(System.in));
+				String s = reader.readLine();
+				if (s.isEmpty()) {
+					System.out.println("Enter time of working");
+					System.out.println();
+				} else {
+					int time = Integer.parseInt(s);
+					int count = 0;
+					for (int i = 0; i < chooseArray.size(); i++) {
+						int kWh = chooseArray.get(i).getPower() * time;
+						count += kWh;
+					}
+					System.out.println(count + " kWh");
+					return;
+				}
 
-			int count = 0;
-			for (int i = 0; i < chooseArray.size(); i++) {
-				int kWh = chooseArray.get(i).getPower() * time;
-				count += kWh;
 			}
-			System.out.println(count + " kWh");
-		}catch (IOException e) {
+		} catch (IOException e) {
 			System.err.println(e.getMessage());
 			e.printStackTrace();
 		}

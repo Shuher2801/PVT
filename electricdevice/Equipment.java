@@ -34,15 +34,6 @@ public abstract class Equipment implements ElectricDevices, Comparable<Object>,S
 	}
 
 	/**
-	 * this method displays the variables name and power
-	 */
-	public void show() {
-		System.out.printf("%-18s", getName());
-		System.out.printf("%15d%n", getPower());
-
-	}
-
-	/**
 	 * this method overrides the interface Comparable and sorts on the field
 	 * power
 	 */

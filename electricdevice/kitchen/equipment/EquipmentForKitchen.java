@@ -9,8 +9,7 @@ import by.pvt.electricdevice.ElectricDevices;
  * @author Ilya
  *
  */
-public abstract class EquipmentForKitchen extends Equipment implements
-		ElectricDevices {
+public abstract class EquipmentForKitchen extends Equipment  {
 
 	private String color = null;
 

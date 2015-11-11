@@ -32,27 +32,33 @@ public class Main {
 					.printf("if you want to calculates the power consumption of the powered equipment  press %10d%n",
 							4);
 
-			int number = Integer.parseInt(reader.readLine());
+			String s = reader.readLine();
+			if (s.isEmpty()) {
+				System.out.println("Enter a number");
+				System.out.println();
+			} else {
 
-			switch (number) {
-			case 1:
-				man.title();
-				man.writeAr(man.builder(), man.fileName);
-				man.showAll(man.openAr(man.fileName));
-				break;
-			case 2:
-				man.title();
-				man.sortPower(man.builder());
-				break;
-			case 3:
-				man.chooseTernOn(man.builder());
-				break;
-			case 4:
-				man.calculatesPower(man.chooseTernOn(man.builder()));
-				break;
-			default:
+				int number = Integer.parseInt(s);
+
+				switch (number) {
+				case 1:
+					man.title();
+					man.writeAr(man.builder(), man.fileName);
+					man.showAll(man.openAr(man.fileName));
+					break;
+				case 2:
+					man.title();
+					man.sortPower(man.builder());
+					break;
+				case 3:
+					man.chooseTernOn(man.builder());
+					break;
+				case 4:
+					man.calculatesPower(man.chooseTernOn(man.builder()));
+					break;
+				default:
+				}
 			}
-
 		}
 	}
 }
