@@ -1,0 +1,27 @@
+<studentList>
+
+<student >
+
+<firstName>Max</firstName>
+
+<lastName>Payne</lastName>
+
+<age>42</age>
+
+<faculty>ksis</faculty>
+
+</student>
+
+<student >
+
+<firstName>John</firstName>
+
+<lastName>Connor</lastName>
+
+<age>18</age>
+
+<faculty>mmf</faculty>
+
+</student>
+
+</studentList>

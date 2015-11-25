@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import electricdevice.Equipment;
+import electricdevice.Main;
 import by.pvt.electricdevice.house.equipment.Cleaning;
 import by.pvt.electricdevice.house.equipment.ForEntertainment;
 import by.pvt.electricdevice.house.equipment.OtherHouseEquipment;
@@ -36,6 +37,13 @@ public class Manipulation {
 	 * @return array
 	 */
 	String fileName = "D:/java_3/core";
+	String choose = "choose";
+	String pressY = "pressY";
+	String enterTime = "enterTime";
+	String plug = "plugged in equipment";
+	String kWh = " kWh";
+	String name = "Name";
+	String power = "Power";
 
 	public List<Equipment> builder() {
 
@@ -155,8 +163,8 @@ public class Manipulation {
 	}
 
 	public void title() {
-		System.out.printf("%-18s", "Name");
-		System.out.printf("%15s%n%n", "Power");
+		System.out.printf("%-18s", Main.rb.getString(name));
+		System.out.printf("%15s%n%n", Main.rb.getString(power));
 	}
 
 	/**
@@ -177,10 +185,10 @@ public class Manipulation {
 	}
 
 	/**
-	 * Suggests to choose what equipment to plug in and outputs
-	 * their list. Serially elements of the ArrayList are brought to the console
-	 * and the user is offered to choose to plug in the equipment or not.To plug
-	 * in it is necessary to press a letter "y", to pass a key Enter.
+	 * Suggests to choose what equipment to plug in and outputs their list.
+	 * Serially elements of the ArrayList are brought to the console and the
+	 * user is offered to choose to plug in the equipment or not.To plug in it
+	 * is necessary to press a letter "y", to pass a key Enter.
 	 * 
 	 * @param array
 	 * @return chooseArray
@@ -189,9 +197,8 @@ public class Manipulation {
 	public List<Equipment> chooseTernOn(List<Equipment> array)
 			throws IOException {
 
-		System.out.println("choose to plug in the equipment or not.");
-		System.out
-				.println("If you want to plug in it  to press a letter \"y\", to pass a key Enter.");
+		System.out.println(Main.rb.getString(choose));
+		System.out.println(Main.rb.getString(pressY));
 		System.out.println();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(
 				System.in));
@@ -208,18 +215,18 @@ public class Manipulation {
 				chooseArray.add(srt);
 			}
 		}
-		System.out.println("plugged in equipment");
+		System.out.println(plug);
 		for (int i = 0; i < chooseArray.size(); i++) {
 			System.out.printf("%-18s", chooseArray.get(i).getName());
 			System.out.printf("%15s%n", chooseArray.get(i).getPower());
-			// chooseArray.get(i).show();
+
 		}
 		return chooseArray;
 	}
 
 	/**
-	 * calculates the power consumption of the powered equipment for
-	 * a selected period of time
+	 * calculates the power consumption of the powered equipment for a selected
+	 * period of time
 	 * 
 	 * @param chooseArray
 	 * @throws NumberFormatException
@@ -228,14 +235,14 @@ public class Manipulation {
 	public void calculatesPower(List<Equipment> chooseArray) {
 
 		System.out.println();
-		System.out.println("Enter time of working");
+		System.out.println(Main.rb.getString(enterTime));
 		try {
 			while (true) {
 				BufferedReader reader = new BufferedReader(
 						new InputStreamReader(System.in));
 				String s = reader.readLine();
 				if (s.isEmpty()) {
-					System.out.println("Enter time of working");
+					System.out.println(Main.rb.getString(enterTime));
 					System.out.println();
 				} else {
 					int time = Integer.parseInt(s);
@@ -244,7 +251,7 @@ public class Manipulation {
 						int kWh = chooseArray.get(i).getPower() * time;
 						count += kWh;
 					}
-					System.out.println(count + " kWh");
+					System.out.println(count + Main.rb.getString(kWh));
 					return;
 				}
 
