@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import electricdevice.Equipment;
+import electricdevice.Loger;
 import electricdevice.Main;
 import by.pvt.electricdevice.house.equipment.Cleaning;
 import by.pvt.electricdevice.house.equipment.ForEntertainment;
@@ -41,7 +42,6 @@ public class Manipulation {
 	String pressY = "pressY";
 	String enterTime = "enterTime";
 	String plug = "plugged in equipment";
-	String kWh = " kWh";
 	String name = "Name";
 	String power = "Power";
 
@@ -236,6 +236,7 @@ public class Manipulation {
 
 		System.out.println();
 		System.out.println(Main.rb.getString(enterTime));
+		Main.Loger.writeLog( " user entered a number");
 		try {
 			while (true) {
 				BufferedReader reader = new BufferedReader(
@@ -248,10 +249,10 @@ public class Manipulation {
 					int time = Integer.parseInt(s);
 					int count = 0;
 					for (int i = 0; i < chooseArray.size(); i++) {
-						int kWh = chooseArray.get(i).getPower() * time;
-						count += kWh;
+						int k = chooseArray.get(i).getPower() * time;
+						count += k;
 					}
-					System.out.println(count + Main.rb.getString(kWh));
+					System.out.println(count);
 					return;
 				}
 
