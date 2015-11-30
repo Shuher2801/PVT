@@ -42,6 +42,7 @@ public class Manipulation {
 	String pressY = "pressY";
 	String enterTime = "enterTime";
 	String plug = "plugged in equipment";
+	String kwh = " kWh";
 	String name = "Name";
 	String power = "Power";
 
@@ -207,7 +208,6 @@ public class Manipulation {
 
 		for (int i = 0; i < array.size(); i++) {
 			Equipment srt = array.get(i);
-			// srt.show();
 			System.out.printf("%-18s", array.get(i).getName());
 			System.out.printf("%15s%n", array.get(i).getPower());
 			String s = reader.readLine();
@@ -236,7 +236,6 @@ public class Manipulation {
 
 		System.out.println();
 		System.out.println(Main.rb.getString(enterTime));
-		Main.Loger.writeLog( " user entered a number");
 		try {
 			while (true) {
 				BufferedReader reader = new BufferedReader(
@@ -249,10 +248,11 @@ public class Manipulation {
 					int time = Integer.parseInt(s);
 					int count = 0;
 					for (int i = 0; i < chooseArray.size(); i++) {
-						int k = chooseArray.get(i).getPower() * time;
-						count += k;
+						int kWh = chooseArray.get(i).getPower() * time;
+						count += kWh;
 					}
-					System.out.println(count);
+					Main.lg.writeLog("user entered a number");
+					System.out.println(count + Main.rb.getString("kWh"));
 					return;
 				}
 

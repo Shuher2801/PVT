@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import electricdevice.Loger;
+import electricdevice.Manipulation;
+
 /**
  * this class is the entry point. Includes a console menu for user.
  * 
@@ -58,7 +61,7 @@ public class Main {
 
 			String s = reader.readLine();
 			if (s.isEmpty()) {
-				Loger.writeLog( " user does not enter a number");
+				Loger.writeLog( " user didn't enter a number");
 				System.out.println("еnter");
 				System.out.println();
 			} else {

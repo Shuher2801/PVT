@@ -31,7 +31,10 @@ public class Loger {
 		try {
 			pr = new PrintWriter(new BufferedWriter(new FileWriter(logFile,
 					true)));
-			pr.println(dt.format(currentTime) + " - " + logMessage);
+			pr.println(Thread.currentThread().getStackTrace()[2].getClassName()
+					+ " "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ " " + dt.format(currentTime) + " - " + logMessage);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
