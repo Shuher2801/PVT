@@ -16,7 +16,7 @@ public void TestPluse(){
 public static int TestMinus(int a,int b){
 				
 		
-		return a-b;
+		return (a-b)*a;
 		
 	}
 	
